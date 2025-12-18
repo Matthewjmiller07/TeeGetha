@@ -2,21 +2,30 @@
 Custom Shirts For Your Whole Family
 
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<img width="1200" height="475" alt="TeeGetha Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-## Run and deploy your AI Studio app
+TeeGetha is a custom t-shirt design platform that allows families to create personalized shirts with AI-powered background removal and Printify integration for automated printing and shipping.
 
-This contains everything you need to run your app locally.
+## ✨ Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1NJ8vc0wKKaQCHM-LKG26UwXtzB8tlCbW
+- **AI-Powered Background Removal**: Automatically remove backgrounds from family photos
+- **Custom Shirt Design**: Upload and customize designs for family members
+- **Multiple Shirt Types**: Men's, Women's, and Kids' shirts with various sizes and colors
+- **Stripe Payment Integration**: Secure payment processing with promo code support
+- **Printify Integration**: Automated order fulfillment and shipping
+- **Real-time Preview**: See your custom designs before ordering
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
 
-## Run Locally
+## 🚀 Quick Start
 
-**Prerequisites:**  Node.js
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/Matthewjmiller07/TeeGetha.git](https://github.com/Matthewjmiller07/TeeGetha.git)
+   cd TeeGetha
