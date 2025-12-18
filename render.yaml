@@ -1,0 +1,45 @@
+services:
+  # Web Service
+  - type: web
+    name: teegetha
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_GEMINI_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: VITE_STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: PRINTIFY_API_TOKEN
+        sync: false
+      - key: PRINTIFY_SHOP_ID
+        sync: false
+      - key: PRINTIFY_PRINT_PROVIDER_ID
+        sync: false
+      - key: PRINTIFY_BLUEPRINT_ID_MEN
+        sync: false
+      - key: PRINTIFY_BLUEPRINT_ID_WOMEN
+        sync: false
+      - key: PRINTIFY_BLUEPRINT_ID_KIDS
+        sync: false
+      - key: PRINTIFY_SHIPPING_METHOD
+        sync: false
+      - key: BACKGROUND_REMOVAL_API_KEY
+        sync: false
+      - key: BACKGROUND_REMOVAL_MODEL_VERSION
+        sync: false
+      - key: VITE_API_BASE_URL
+        value: https://teegetha.onrender.com/api
+      - key: CLIENT_URL
+        value: https://teegetha.onrender.com
+      - key: CORS_ORIGIN
+        value: https://teegetha.onrender.com
+      - key: TEST_MODE
+        value: false

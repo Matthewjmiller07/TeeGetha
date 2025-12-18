@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -627,6 +629,20 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true });
 });
 
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  
+  // Serve React build files
+  app.use(express.static(path.join(__dirname, '../dist')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
-  console.log(`Background removal server listening on port ${PORT}`);
+  console.log(`TeeGetha server listening on port ${PORT}`);
 });
