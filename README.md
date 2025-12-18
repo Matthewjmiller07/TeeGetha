@@ -1,10 +1,6 @@
 # TeeGetha
 Custom Shirts For Your Whole Family
 
-<div align="center">
-<img width="1200" height="475" alt="TeeGetha Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 TeeGetha is a custom t-shirt design platform that allows families to create personalized shirts with AI-powered background removal and Printify integration for automated printing and shipping.
 
 ## ✨ Features
