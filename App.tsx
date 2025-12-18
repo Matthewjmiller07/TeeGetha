@@ -4,7 +4,8 @@ import { AppStep, FamilyMember, STYLES, SHIRT_COLORS, ShippingDetails, PaymentDe
 import { IS_TEST_MODE, TEST_ASSETS, API_BASE_URL } from './config';
 import { StepIndicator } from './components/StepIndicator';
 import { Button } from './components/Button';
-import { ShirtMockup } from './components/ShirtMockup';
+import { ShirtMockup, PrintifyShirtMockup } from './components/ShirtMockup';
+import { PrintifyShirtMockup as NewPrintifyShirtMockup } from './components/PrintifyShirtMockup';
 import { analyzeGroupPhoto, generateStylizedMember, generateFamilyShirtPreview, AnalyzedPerson } from './services/geminiService';
 import { createPrintOrder, processPayment } from './services/printService';
 import { Upload, Users, Sparkles, ShoppingCart, Share2, ArrowRight, Trash2, Plus, Download, CreditCard, RefreshCw, ChevronLeft, MapPin, CheckCircle, Package } from 'lucide-react';
@@ -215,6 +216,7 @@ export default function App() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isGenerating, setIsGenerating] = useState<Record<string, boolean>>({});
   const [selectedShirtColor, setSelectedShirtColor] = useState(SHIRT_COLORS[0]);
+  const [familyShirtType, setFamilyShirtType] = useState<'men' | 'women' | 'kids'>('men');
   
   // Checkout State
   const [shipping, setShipping] = useState<ShippingDetails>({
@@ -734,8 +736,10 @@ export default function App() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 inline-block">
             <div className={`aspect-square w-64 relative ${STYLES.find(s=>s.id === selectedStyleId)?.previewColor} flex items-center justify-center overflow-hidden bg-opacity-20`}>
               <div className="w-[85%] h-[85%] relative">
-                <ShirtMockup
-                  colorHex={selectedShirtColor.hex}
+                <NewPrintifyShirtMockup
+                  type={familyShirtType}
+                  size="M"
+                  color={selectedShirtColor.name}
                   image={familyFrontImage}
                   className="w-full h-full"
                 />
@@ -752,8 +756,10 @@ export default function App() {
               
               {/* Realistic Shirt Mockup */}
               <div className="w-[85%] h-[85%] relative">
-                  <ShirtMockup 
-                    colorHex={getColorHexForMember(member)} 
+                  <NewPrintifyShirtMockup 
+                    type={(member.shirtType || 'MEN').toLowerCase() as 'men' | 'women' | 'kids'}
+                    size={member.size || 'M'}
+                    color={member.shirtColorName || selectedShirtColor.name}
                     image={member.generatedImage}
                     className="w-full h-full"
                   />
@@ -864,8 +870,10 @@ export default function App() {
               <tr key={member.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50">
                 <td className="p-4">
                   <div className="w-16 h-16 rounded-lg bg-gray-50 overflow-hidden border border-gray-200 relative">
-                     <ShirtMockup 
-                        colorHex={getColorHexForMember(member)} 
+                     <NewPrintifyShirtMockup 
+                        type={(member.shirtType || 'MEN').toLowerCase() as 'men' | 'women' | 'kids'}
+                        size={member.size || 'M'}
+                        color={member.shirtColorName || selectedShirtColor.name}
                         image={member.generatedImage || (IS_TEST_MODE ? TEST_ASSETS.checkerTest : null)}
                         className="w-full h-full"
                      />
@@ -977,8 +985,10 @@ export default function App() {
             {members.map((member) => (
               <div key={member.id} className="flex items-center gap-3 min-w-[140px]">
                 <div className="w-14 h-14 rounded-lg bg-gray-50 overflow-hidden border border-gray-200 flex items-center justify-center">
-                  <ShirtMockup
-                    colorHex={selectedShirtColor.hex}
+                  <NewPrintifyShirtMockup
+                    type={(member.shirtType || 'MEN').toLowerCase() as 'men' | 'women' | 'kids'}
+                    size={member.size || 'M'}
+                    color={member.shirtColorName || selectedShirtColor.name}
                     image={member.generatedImage}
                     className="w-full h-full"
                   />
